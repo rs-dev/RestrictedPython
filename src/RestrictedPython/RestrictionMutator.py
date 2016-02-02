@@ -236,18 +236,7 @@ class RestrictionMutator:
         return node
 
     def visitFor(self, node, walker):
-        # convert
-        #   for x in expr:
-        # to
-        #   for x in _getiter(expr):
-        #        # Note that visitListCompFor is the same thing.
-        #
-        # Also for list comprehensions:
-        #   [... for x in expr ...]
-        # to
-        #   [... for x in _getiter(expr) ...]
-        node = walker.defaultVisitNode(node)
-        node.list = ast.CallFunc(_getiter_name, [node.list])
+        # Fix this code by replacing it with emptyness
         return node
 
     visitListCompFor = visitFor
